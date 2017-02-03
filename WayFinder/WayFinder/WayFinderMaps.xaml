@@ -1,26 +1,31 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
+             xmlns:controls="clr-namespace:WayFinderEx;assembly=WayFinderEx"
              x:Class="WayFinder.WayFinderMaps">
-  <StackLayout>
-    <StackLayout Padding="0,20,0,0">
-      <Label Text="Geocode:" />
-      <Entry x:Name="inputEntry" Text="Pacific Ave, San Francisco, California" />
-      <Button Text="Geocode" Clicked="OnGeocodeButtonClicked" />
-      <Label x:Name="geocodedOutputLabel" />
-    </StackLayout>
-    <StackLayout VerticalOptions="StartAndExpand" Padding="30" >
-      <maps:Map WidthRequest="320" HeightRequest="200"
-          x:Name="wayFinderMapShows"
-          IsShowingUser="true"
-          MapType="Hybrid"
-          />
-    </StackLayout>
-    <StackLayout VerticalOptions="StartAndExpand" Padding="30" >
-      <Button x:Name="btnHybrid" Text="Hybrid"></Button>
-      <Button x:Name="btnSatellite" Text="Satellite"></Button>
-      <Button x:Name="btnStreet" Text="Street"></Button>
-    </StackLayout>
-  </StackLayout>
+  <ContentPage.Content>
+    <ScrollView>
+      
+      <StackLayout>
+        <StackLayout Padding="0,10,0,0" Orientation="Vertical">
+          <StackLayout  Orientation="Horizontal">
+            <Label Text="Geocode:" />
+            <Entry x:Name="inputEntry" Text="Pacific Ave, San Francisco, California" WidthRequest="150"  />
+            <Button Text="Geocode" Clicked="OnGeocodeButtonClicked" />
+          </StackLayout>
+          <Label x:Name="geocodedOutputLabel" />
+        </StackLayout>
+        <StackLayout VerticalOptions="StartAndExpand" Padding="30" >
+          
+          <controls:CustomMap  WidthRequest="{x:Static maps:App.ScreenWidth}" HeightRequest="{x:Static maps:App.ScreenHeight}"
+                x:Name="wayFinderCustomMap" IsShowingUser="true" MapType="Street"  />
+        </StackLayout>
+        <StackLayout VerticalOptions="StartAndExpand" Orientation="Horizontal" >
+          <Button x:Name="btnHybrid" Text="Hybrid" Clicked="OnChangeMapType"></Button>
+          <Button x:Name="btnSatellite" Text="Satellite" Clicked="OnChangeMapType"></Button>
+          <Button x:Name="btnStreet" Text="Street" Clicked="OnChangeMapType"></Button>
+        </StackLayout>
+      </StackLayout>
+    </ScrollView>
+  </ContentPage.Content>
 </ContentPage>

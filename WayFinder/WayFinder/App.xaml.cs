@@ -12,7 +12,11 @@ namespace WayFinder
 {
 	public partial class App : Application
 	{
-		public App ()
+
+        public static double ScreenHeight;
+        public static double ScreenWidth;
+
+        public App ()
 		{
 			InitializeComponent();
             MobileCenter.Start(typeof(Analytics), typeof(Crashes));
